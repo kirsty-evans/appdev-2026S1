@@ -1,4 +1,4 @@
-namespace TermCtrl;
+namespace TermControl;
 
 using System.Reflection;
 
@@ -21,21 +21,30 @@ public class TermController
         stderr = Console.Error;
     }
 
-
+	//
+	// Attempts to get the Main method for
+	// both non-public or static or emitted variants.
+	// 
     public MethodInfo? GetMain(string programName) {
         MethodInfo? mMatch = null;
-        foreach(var m in Type.GetType(programName)
-            .GetMethods(BindingFlags.NonPublic | BindingFlags.Static)) {
-            if(m.Name.ToString() == "Main" || m.Name.ToString() == "<Main>$") {
-                mMatch = m;
-                break;
-            }
+		var typeinfo = Type.GetType(programName);
+		if(typeinfo != null) {
+			foreach(var m in typeinfo
+	            .GetMethods(BindingFlags.NonPublic | BindingFlags.Static)) {
+	            if(m.Name.ToString() == "Main" || m.Name.ToString() == "<Main>$") {
+	                mMatch = m;
+	                break;
+	            }
 
-        }
-        return mMatch;
+            }
+		}
+        return mMatch;	
     }
 
-    public TermController FindAndInvokeMain(string programName, string[] args) {
+	//
+	// Finds and Invokes the main function associated with
+	// 
+    public TermController FindAndInvokeMain(string programName, object[] args) {
         MethodInfo? m = GetMain(programName);
         if(m != null) {
             m.Invoke(null, new object[] { args });
@@ -73,20 +82,49 @@ public class TermController
 
     public void FlushStdOut()
     {
-            stdoutRecorder.Flush();
+		if(stdoutRecorder != null) {
+        	stdoutRecorder.Flush();
+		}
     }
 
+	//
+	// Will output whatever the encoding is, which could be
+	// \r\n or \n
+	// 
+    public string GetRawOutputString()
+    {
+		if(stdoutRecorder != null) {
+        	return stdoutRecorder.ToString();
+		} else {
+			return "";
+		}
+    }
+	
+	//
+	// We will use unix standard instead of windows standard
+	// on the output
+	// 
     public string GetOutputString()
     {
-        return stdoutRecorder.ToString();
+        string output = GetRawOutputString();
+        string newOutput = output.Replace("\r\n", "\n");
+        return newOutput;
     }
 
+	//
+	// Resets the standard output buffer to its original one
+	// instead of the buffer attached
+	// 
     public TermController ResetStdOut()
     {
-            Console.SetOut(stdout);
-            return this;
+        Console.SetOut(stdout);
+        return this;
     }
 
+	//
+	// Records using a buffer, on the standard error
+	// pipe
+	// 
     public TermController RecordStdErr()
     {
         stderrRecorder = new StringWriter();
@@ -94,9 +132,17 @@ public class TermController
         return this;
     }
 
+	//
+	// Gets the buffer that is transformed into
+	// a string
+	// 
     public string GetErrorString()
     {
-        return stderrRecorder.ToString();
+		if(stderrRecorder != null) {
+        	return stderrRecorder.ToString();
+		} else {
+			return "";
+		}
     }
 
     public TermController ResetStdErr()
@@ -106,4 +152,3 @@ public class TermController
     }
 
 }
-

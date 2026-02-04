@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "vNFZDSCfWR4=",
+  "success": true,
+  "projectFilePath": "/home/ahto/Projects/work/tafe-delivery/appdev-2026S1/tasks/fundamentals/TermControl/TermControl.csproj",
+  "expectedPackageFiles": [
+    "/home/ahto/.nuget/packages/microsoft.netcore.app.ref/9.0.11/microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "/home/ahto/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.11/microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

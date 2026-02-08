@@ -6,9 +6,8 @@ string? input;
 
 while (true) {
 
-    Console.Write("Enter a number: ");
+    Console.WriteLine("Enter a number: ");
     input = Console.ReadLine();
-
 
 
     // will end the program is input is empty

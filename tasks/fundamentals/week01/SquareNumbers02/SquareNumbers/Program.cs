@@ -2,8 +2,7 @@
 
 using System.Diagnostics;
 
-string? input = Console.ReadLine();
-if (int.TryParse(input, out int number))
+if (args.Length > 0 && int.TryParse(args[0], out int number))
 {
     int square = number * number;
     Console.WriteLine($"{square}");

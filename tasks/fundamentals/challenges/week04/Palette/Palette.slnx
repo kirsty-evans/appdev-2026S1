@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Palette.Test/Palette.Test.csproj" />
+  <Project Path="Palette/Palette.csproj" />
+</Solution>

@@ -30,7 +30,7 @@ public class TermController
 		var typeinfo = Type.GetType(programName);
 		if(typeinfo != null) {
 			foreach(var m in typeinfo
-	            .GetMethods(BindingFlags.NonPublic | BindingFlags.Static)) {
+	            .GetMethods(BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Public)) {
 	            if(m.Name.ToString() == "Main" || m.Name.ToString() == "<Main>$") {
 	                mMatch = m;
 	                break;

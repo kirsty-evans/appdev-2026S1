@@ -8,7 +8,6 @@ public class DistTest {
 		
 		Assert.Equal(answer[0], p.GetCoords()[0], 0.00001);
 		Assert.Equal(answer[1], p.GetCoords()[1], 0.00001);
-		Assert.Equal(answer[2], p.GetCoords()[2], 0.00001);
 	}
 
     [Fact]

@@ -2,22 +2,27 @@
 
 	public class Point2D
 	{
+		double x;
+		double y;
 
 		public Point2D(double x, double y) {
+			this.x = x;
+			this.y = y;
 		
 		}
 
 
 		public double GetX() {
-			return 0.0;
+			return x;
 		}
 		public double GetY() {
-			return 0.0;
+			return y;
 		}
 
 		public double[] GetCoords() {
-			return new double[] {0.0, 0.0};
+			return new double[] {x, y};
 		}
 	}
+
 
 }

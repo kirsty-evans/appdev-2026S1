@@ -185,7 +185,7 @@ public class CounterTest
     [Fact]
     public void Test_Counter_WithZero_And_Reset_1()
     {
-        Counter counter = new Counter(10);
+        Counter counter = new Counter(0);
         TestHelper(
             counter,
             new CounterTestAction[] {

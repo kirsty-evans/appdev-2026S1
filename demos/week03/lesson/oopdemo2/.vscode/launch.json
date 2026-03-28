@@ -1,0 +1,10 @@
+{
+    "configurations": [
+    {
+        "name": "C#:  Debug",
+        "type": "dotnet",
+        "request": "launch",
+        "projectPath": "${workspaceFolder}/oopdemo2.csproj"
+    }
+    ]
+}
